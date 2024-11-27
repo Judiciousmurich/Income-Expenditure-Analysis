@@ -1,17 +1,13 @@
-def calculate_mean(data, column):
-    """
-    Calculate the mean of a specific column in the DataFrame.
-    """
-    return data[column].mean()
+# src/income_statistics.py
 
-def calculate_median(data, column):
-    """
-    Calculate the median of a specific column in the DataFrame.
-    """
-    return data[column].median()
+def calculate_mean(df, column):
+    """Calculate the mean of a given column."""
+    return df[column].mean()
 
-def calculate_std_dev(data, column):
-    """
-    Calculate the standard deviation of a specific column in the DataFrame.
-    """
-    return data[column].std()
+def calculate_median(df, column):
+    """Calculate the median of a given column."""
+    return df[column].median()
+
+def calculate_std_dev(df, column):
+    """Calculate the standard deviation of a given column."""
+    return df[column].std()

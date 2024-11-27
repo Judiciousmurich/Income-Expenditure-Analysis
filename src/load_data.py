@@ -1,21 +1,34 @@
 import pandas as pd
+import os
 
-def load_csv():
+def load_income_expense_data(data_path = os.path.join(project_root, 'data', 'Inc_Exp_Data.csv')):
     """
-    Loads a CSV file from the predefined path and returns a DataFrame.
-
+    Load income and expense data from a CSV file.
+    
+    Parameters:
+    -----------
+    data_path : str
+        Path to the CSV file containing income and expense data
+    
     Returns:
-    - pd.DataFrame: A pandas DataFrame containing the data.
-    - None: If there is an error during loading.
+    --------
+    pandas.DataFrame
+        Loaded dataframe with income and expense information
     """
-    file_path = "../data/Inc_Exp_Data.csv"  # Path to the CSV file
     try:
-        data = pd.read_csv(file_path)
-        print(f"Successfully loaded data from: {file_path}")
-        return data
-    except FileNotFoundError:
-        print(f"File not found. Please check if the file exists at: {file_path}")
-        return None
+        # Check if file exists
+        if not os.path.exists(data_path):
+            raise FileNotFoundError(f"The file {data_path} does not exist.")
+        
+        # Read the CSV file
+        df = pd.read_csv(data_path)
+        
+        # Basic data validation
+        if df.empty:
+            print("Warning: The loaded dataframe is empty.")
+        
+        return df
+    
     except Exception as e:
-        print(f"Error loading CSV from {file_path}: {e}")
+        print(f"Error loading data: {e}")
         return None
