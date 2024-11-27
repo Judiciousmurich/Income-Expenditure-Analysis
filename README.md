@@ -23,7 +23,3 @@ Categorize income data into various brackets for further analysis.
 
 Bar charts, scatter plots, and histograms to illustrate trends in income and expenditure.
 
-## Data
-The dataset used for this analysis is located in the `data` folder. It contains information about household income and expenditure.
-
-File: `Inc_Exp_Data.csv`
