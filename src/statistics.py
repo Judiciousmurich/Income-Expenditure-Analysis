@@ -1,17 +1,17 @@
 def calculate_mean(data, column):
     """
-    Calculates the mean of a specified column.
+    Calculate the mean of a specific column in the DataFrame.
     """
     return data[column].mean()
 
 def calculate_median(data, column):
     """
-    Calculates the median of a specified column.
+    Calculate the median of a specific column in the DataFrame.
     """
     return data[column].median()
 
 def calculate_std_dev(data, column):
     """
-    Calculates the standard deviation of a specified column.
+    Calculate the standard deviation of a specific column in the DataFrame.
     """
     return data[column].std()

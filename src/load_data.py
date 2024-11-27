@@ -1,7 +1,13 @@
 import pandas as pd
 
 def load_csv():
-    
+    """
+    Loads a CSV file from the predefined path and returns a DataFrame.
+
+    Returns:
+    - pd.DataFrame: A pandas DataFrame containing the data.
+    - None: If there is an error during loading.
+    """
     file_path = "../data/Inc_Exp_Data.csv"  # Path to the CSV file
     try:
         data = pd.read_csv(file_path)
@@ -13,13 +19,3 @@ def load_csv():
     except Exception as e:
         print(f"Error loading CSV from {file_path}: {e}")
         return None
-
-# Main script to load and display data
-if __name__ == "__main__":
-    data = load_csv()
-    
-    if data is not None:
-        print("First 5 rows of the dataset:")
-        print(data.head())
-    else:
-        print("Failed to load the dataset.")

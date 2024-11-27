@@ -1,22 +1,21 @@
-import seaborn as sns
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 def plot_bar(data, column):
     """
-    Plots a bar chart for the specified column.
+    Plot a bar chart of a specific column in the DataFrame.
     """
-    data[column].value_counts().plot(kind="bar")
-    plt.title(f"Distribution of {column}")
-    plt.xlabel(column)
-    plt.ylabel("Count")
+    plt.figure(figsize=(10, 6))
+    sns.countplot(data=data, x=column)
+    plt.title(f"Bar Chart of {column}")
+    plt.xticks(rotation=45)
     plt.show()
 
 def plot_scatter(data, x_column, y_column):
     """
-    Plots a scatter plot between two columns.
+    Plot a scatter plot for two columns in the DataFrame.
     """
-    data.plot(x=x_column, y=y_column, kind="scatter", alpha=0.5)
-    plt.title(f"{x_column} vs {y_column}")
-    plt.xlabel(x_column)
-    plt.ylabel(y_column)
+    plt.figure(figsize=(10, 6))
+    sns.scatterplot(data=data, x=x_column, y=y_column)
+    plt.title(f"Scatter Plot of {x_column} vs {y_column}")
     plt.show()
