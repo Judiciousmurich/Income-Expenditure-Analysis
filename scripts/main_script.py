@@ -1,25 +1,35 @@
 import os
 import sys
 
-# Add the 'src' directory to the system path so the modules can be imported
-sys.path.append(os.path.abspath(os.path.join(os.getcwd(), '..', 'src')))
+# Add the project root to the Python path
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.insert(0, project_root)
 
-# Now import the functions from your custom modules
-from load_data import load_csv
-from income_statistics import calculate_mean, calculate_median, calculate_std_dev
-from visualizations import plot_bar, plot_scatter
+from src.load_data import load_income_expense_data
+from src.income_statistics import calculate_income_statistics, categorize_income
+from src.visualizations import plot_income_distribution, plot_income_by_category
 
 def main():
     # Load the data
-    data = load_csv("../data/Inc_Exp_Data.csv")
+    df = load_income_expense_data(project_root)
     
-    if data is not None:
-        # Example: Calculate and print the mean of a specific column
-        mean_exp = calculate_mean(data, 'Mthly_HH_Expense')
-        print(f"Mean Household Expense: {mean_exp}")
-
-        # Example: Plot a bar chart for the Highest Qualified Member
-        plot_bar(data, 'Highest_Qualified_Member')
+    if df is not None:
+        # Calculate income statistics
+        income_stats = calculate_income_statistics(df)
+        print("Income Statistics:")
+        for stat, value in income_stats.items():
+            print(f"{stat}: {value}")
+        
+        # Add income categories to the dataframe
+        df['Income_Category'] = categorize_income(df)
+        
+        # Create visualizations
+        plot_income_distribution(df)
+        plot_income_by_category(df)
+        
+        print("\nVisualizations have been saved in the project directory.")
+    else:
+        print("Failed to load data. Please check the file path and data.")
 
 if __name__ == "__main__":
     main()
